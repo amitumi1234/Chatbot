@@ -5,17 +5,9 @@ import os
 # App title
 st.set_page_config(page_title="🤖Personal Chatbot🤖")
 
-# Replicate Credentials
-# with st.sidebar:
-#     st.title('🤖Personal Chatbot🤖')
-#     replicate_api = 'r8_VRhMEq538V10UJ4vkfpzdPbGAz584M73ythYY'
-#     replicate.Client(api_token=replicate_api) 
-#     os.environ['REPLICATE_API_TOKEN'] = replicate_api
 with st.sidebar:
     st.title('🤖Personal Chatbot🤖')
-    st.write('This chatbot is created using the open-source Llama 2 LLM model from Meta.')
-    if 'r8_H9oZ14n1ExOVaoN3eJtzzOWvnOhVQ2b2uUEml' in st.secrets:
-        st.success('API key already provided!', icon='✅')
+    if 'REPLICATE_API_TOKEN' in st.secrets:
         replicate_api = st.secrets['REPLICATE_API_TOKEN']
     else:
         replicate_api = st.text_input('Enter Replicate API token:', type='password')
@@ -60,16 +52,16 @@ def generate_llama2_response(prompt_input):
                                   "temperature":temperature, "top_p":top_p, "max_length":max_length, "repetition_penalty":1})
     return output
 
-# User-provided prompt
+
 if prompt := st.chat_input(disabled=not replicate_api):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.write(prompt)
 
-# Generate a new response if last message is not from assistant
+
 if st.session_state.messages[-1]["role"] != "assistant":
     with st.chat_message("assistant"):
-        with st.spinner("generating..."):
+        with st.spinner("generating🤔..."):
             response = generate_llama2_response(prompt)
             placeholder = st.empty()
             full_response = ''
