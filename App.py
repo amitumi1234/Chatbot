@@ -3,12 +3,12 @@ import replicate
 import os
 
 # App title
-    st.set_page_config(
-        page_title="Personal Chatbot",
-        page_icon="🤖",
-        layout="centered",
-        initial_sidebar_state="expanded"
-    )
+st.set_page_config(
+    page_title="Personal Chatbot",
+    page_icon="🤖",
+    layout="centered",
+    initial_sidebar_state="expanded"
+)
 st.set_page_config(page_title="Personal Chatbot")
 
 with st.sidebar:
