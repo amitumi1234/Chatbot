@@ -9,8 +9,6 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded"
 )
-st.set_page_config(page_title="Personal Chatbot")
-
 with st.sidebar:
     st.title('🤖Personal Chatbot🤖')
     if 'REPLICATE_API_TOKEN' in st.secrets:
